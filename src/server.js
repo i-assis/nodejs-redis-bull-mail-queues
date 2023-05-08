@@ -1,3 +1,4 @@
+import 'dotenv/config'; // LEVEL 0
 import express from 'express'; // CORE LEVEL 0
 import UserController from './app/controllers/UserController'; // CORE LEVEL 1
 
