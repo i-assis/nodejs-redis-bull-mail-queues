@@ -30,8 +30,14 @@ export default {
 
     // Add RegistrationMail job to queue:
     // Queues can't be stored in RAM memory! Too volatile.. thus Redis.
-    await Queue.add({ user });
 
+    // check https://github.com/OptimalBits/bull/blob/develop/REFERENCE.md#queueadd
+    // 1 job per queue:
+    // await Queue.add({ user });
+
+    // multi jobs per queue, need to say to which queue you're adding the job:
+    await Queue.add("RegistrationMail", { user });
+    await Queue.add("UserReport", { user });
 
     return res.json(user);
   },

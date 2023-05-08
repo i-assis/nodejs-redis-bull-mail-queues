@@ -5,7 +5,15 @@
 import 'dotenv/config';
 
 import Queue from './app/lib/Queue'
-import RegistrationMail from './app/jobs/RegistrationMail'
+
+// All jobs are now imported in bulk, this line goes away:
+// import RegistrationMail from './app/jobs/RegistrationMail'
 
 // see https://github.com/OptimalBits/bull/blob/develop/REFERENCE.md#queueprocess
-Queue.process(RegistrationMail.handle)
+
+// Process SINGLE queue:
+// Queue.process(RegistrationMail.handle)
+
+// Process ALL queues:
+Queue.process();
+// Everytime there is a new job, a new queue is created automatically.
