@@ -5,3 +5,12 @@ import Queue from 'bull';
 import redisConfig from '../../config/redis';
 
 // Background job setup starts now:
+import RegistrationMail from '../jobs/RegistrationMail';
+
+// check https://github.com/OptimalBits/bull
+// check https://github.com/OptimalBits/bull/blob/develop/REFERENCE.md#queue
+const mailQueue = new Queue(RegistrationMail.key, redisConfig);
+
+export default mailQueue;
+
+// Setup 1 queue for every job.

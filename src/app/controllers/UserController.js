@@ -1,9 +1,11 @@
-import Mail from "../lib/Mail";
+// import Mail from "../lib/Mail"; // No longer needed, now we got a redis job queue.
+import Queue from "../lib/Queue";
 
 export default {
   async store(req, res) {
     const { name, email, password } = req.body;
 
+    // same format as const 'data' from job 'RegistrationMail'
     const user = {
       name,
       email,
@@ -11,12 +13,14 @@ export default {
     };
 
     // Send an e-mail to the user:
-      // await Mail.sendMail({
-      // from: "Queue Test <queue@test.com>",
-      // to: `${name} <${email}>`,
-      // subject: "User Registration",
-      // html: `Hi ${name}, wellcome to our Redis/Node queue system!`,
-      // });
+
+    // await Mail.sendMail({
+    // from: "Queue Test <queue@test.com>",
+    // to: `${name} <${email}>`,
+    // subject: "User Registration",
+    // html: `Hi ${name}, wellcome to our Redis/Node queue system!`,
+    // });
+
     // You need propper background job configuration, since:
     // 1. above sendMail execution uses same server as rest of application
     // 2. did execution fail? who knows...
@@ -25,7 +29,9 @@ export default {
     // 'Kue' library is now deprecated. 'Bee Queue' features high performance, but has limited features.
 
     // Add RegistrationMail job to queue:
-    // Queues can't be stored in RAM memory! Too volatile..
+    // Queues can't be stored in RAM memory! Too volatile.. thus Redis.
+    await Queue.add({ user });
+
 
     return res.json(user);
   },

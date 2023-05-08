@@ -4,7 +4,7 @@ export default {
   key: "RegistrationMail",
 
   async handle({ data }) {
-    const { user } = data;
+    const { user } = data; // same format as const 'user' from controller 'UserController'
 
     await Mail.sendMail({
       from: "Queue Test <queue@test.com>",
