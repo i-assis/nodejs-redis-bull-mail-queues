@@ -5,6 +5,7 @@ import express from 'express'; // CORE LEVEL 0
 
 import UserController from './app/controllers/UserController'; // CORE LEVEL 1
 
+// check https://github.com/felixmosh/bull-board#hello-world
 // BULL-BOARD - IMPORTS
 const { createBullBoard } = require('@bull-board/api');
 const { BullAdapter } = require('@bull-board/api/bullAdapter');

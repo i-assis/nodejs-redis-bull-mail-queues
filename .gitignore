@@ -131,3 +131,6 @@ dist
 
 # vscode
 .history/
+
+# redis data dump
+*.rdb
