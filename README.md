@@ -1,1 +1,1 @@
-# nodejs-redis-bull-lib
+# nodejs-redis-bull-mail-queues
